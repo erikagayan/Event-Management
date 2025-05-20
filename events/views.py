@@ -10,12 +10,15 @@ class EventViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
+        user = self.request.user
+
         # Check that the current user is the organizer
-        if not self.request.user.is_organizer:
+        if not user.is_organizer:
             raise PermissionDenied("Only organizers can create events")
 
         # Check that the organizer_id matches the current user
         organizer_id = serializer.validated_data.get('organizer').id
-        if organizer_id != self.request.user.id:
+        if organizer_id != user:
             raise PermissionDenied("You can only create events on your own behalf.")
+
         serializer.save()
