@@ -63,10 +63,6 @@ class User(AbstractUser):
     def clean(self):
         super().clean()
 
-        # addition email validation
-        if self.email and not self.email.endswith('@example.com'):
-            raise ValidationError(_('Email address must be from the example.com domain'))
-
     class Meta:
         verbose_name = _("user")
         verbose_name_plural = _("users")
