@@ -1,0 +1,14 @@
+Hello, {{ participant_username }}!
+
+You have been added as a participant to the event:
+
+Title: {{ event_title }}  
+Description: {{ event_description }}  
+Date and Time: {{ event_date }}  
+Location: {{ event_location }}  
+Organizer: {{ organizer_username }} ({{ organizer_email }})
+
+If you have any questions, please contact the organizer.
+
+Best regards,  
+The Event Management Team

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>You have been added to the event</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+    <h2>Event Notification</h2>
+    <p>Hello, {{ participant_username }}!</p>
+    <p>You have been added as a participant to the event:</p>
+    <h3>{{ event_title }}</h3>
+    <p><strong>Description:</strong> {{ event_description }}</p>
+    <p><strong>Date and Time:</strong> {{ event_date }}</p>
+    <p><strong>Location:</strong> {{ event_location }}</p>
+    <p><strong>Organizer:</strong> {{ organizer_username }} ({{ organizer_email }})</p>
+    <p>If you have any questions, please contact the organizer.</p>
+    <p>Best regards,<br>The Event Management Team</p>
+</body>
+</html>
