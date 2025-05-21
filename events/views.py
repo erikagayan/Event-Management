@@ -4,6 +4,8 @@ from events.filters import EventFilter
 from events.serializers import EventSerializer
 from events.utils import send_notification_email
 from events.permissions import IsOrganizerOrReadOnly
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework.exceptions import PermissionDenied
 
 
@@ -49,3 +51,7 @@ class EventViewSet(viewsets.ModelViewSet):
         for participant_id in added_participant_ids:
             participant = event.participants.get(id=participant_id)
             send_notification_email(event, participant)
+
+    @method_decorator(cache_page(60 * 5))
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
