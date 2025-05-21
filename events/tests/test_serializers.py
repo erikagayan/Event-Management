@@ -1,6 +1,6 @@
 import pytest
 from rest_framework import serializers
-from events.serializers import UserSerializer, EventSerializer
+from events.serializers import EventUserSerializer, EventSerializer
 from events.tests.fixtures import organizer, participant1, participant2, event
 from django.utils import timezone
 
@@ -11,7 +11,7 @@ class TestUserSerializer:
 
     def test_user_serialization(self, organizer):
         """Test serializing a user."""
-        serializer = UserSerializer(organizer)
+        serializer = EventUserSerializer(organizer)
         data = serializer.data
 
         assert data["id"] == organizer.id

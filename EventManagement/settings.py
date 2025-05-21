@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "django_filters",
     "debug_toolbar",
+    "drf_spectacular",
     "events",
     "users",
 ]
@@ -139,6 +140,9 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",
     ],
+
+    "DEFAULT_SCHEMA_CLASS":
+        "drf_spectacular.openapi.AutoSchema",
 }
 
 CACHES = {
@@ -160,3 +164,16 @@ SIMPLE_JWT = {
 # Outputting letters to the console
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "no-reply@eventmanagement.com"
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Event Manager",
+    "DESCRIPTION": "Event CRUD",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "defaultModelRendering": "model",
+        "defaultModelExpandDepth": 2,
+        "defaultModelsExpandDepth": 2,
+    }
+}
