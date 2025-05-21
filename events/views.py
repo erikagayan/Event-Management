@@ -1,13 +1,15 @@
-from rest_framework import viewsets
-from rest_framework.exceptions import PermissionDenied
 from events.models import Event
+from rest_framework import viewsets
+from events.filters import EventFilter
 from events.serializers import EventSerializer
 from events.permissions import IsOrganizerOrReadOnly
+from rest_framework.exceptions import PermissionDenied
 
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [IsOrganizerOrReadOnly]
+    filterset_class = EventFilter
 
     def perform_create(self, serializer):
         user = self.request.user
