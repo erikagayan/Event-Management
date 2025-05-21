@@ -14,10 +14,13 @@ class UserSerializer(serializers.ModelSerializer):
 
 class EventSerializer(serializers.ModelSerializer):
     organizer = UserSerializer(read_only=True)
-    organizer_id = serializers.PrimaryKeyRelatedField(
-        queryset=User.objects.filter(is_organizer=True),
-        source="organizer",
+    participants = UserSerializer(many=True, read_only=True)
+    participant_ids = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        source="participants",
+        many=True,
         write_only=True,
+        required=False
     )
 
     class Meta:
@@ -29,5 +32,6 @@ class EventSerializer(serializers.ModelSerializer):
             "date",
             "location",
             "organizer",
-            "organizer_id",
+            "participants",
+            "participant_ids"
         ]

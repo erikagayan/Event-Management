@@ -15,6 +15,12 @@ class Event(models.Model):
         related_name = "events",
         verbose_name = "Organizer"
     )
+    participants = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="participated_events",
+        verbose_name="Participants",
+        blank=True
+    )
 
     def __str__(self):
         return self.title
